@@ -1,0 +1,27 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<button style="margin-bottom: 20px;">
+    <a asp-page="/ListNews/Create">Create New</a>
+</button>
+
+@foreach (var item in Model.News)
+{
+    <div>
+        <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" alt="" height="100">
+        <a asp-page="/ListNews/Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Title)</a>
+        <p>@Html.DisplayFor(modelItem => item.Content)</p>
+        <p>@Html.DisplayFor(modelItem => item.Author)</p>
+        <p>@Html.DisplayFor(modelItem => item.CreatedAt)</p>
+        <td>
+            <a asp-page="/ListNews/Edit" asp-route-id="@item.Id">Edit</a> |
+            <a asp-page="/ListNews/Details" asp-route-id="@item.Id">Details</a> |
+            <a asp-page="/ListNews/Delete" asp-route-id="@item.Id">Delete</a>
+        </td>
+    </div>
+    <div style="background-color: black; height: 2px;
+    margin-top:20px; margin-bottom: 20px;"></div>
+}
