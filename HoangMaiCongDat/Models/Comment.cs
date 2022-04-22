@@ -14,6 +14,6 @@ namespace HoangMaiCongDat.Models
         [DataType(DataType.Date)]
         public DateTime CreatedAt { get; set; }
         
-        public News News {get; set; }
+        public News? News {get; set; }
     }
 }

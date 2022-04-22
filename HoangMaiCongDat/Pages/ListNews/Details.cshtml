@@ -27,7 +27,7 @@
             @Html.DisplayNameFor(model => model.News.ImageUrl)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.News.ImageUrl)
+            <img src="@Html.DisplayFor(model => model.News.ImageUrl)" alt="" height="100">
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.News.Author)
@@ -47,12 +47,23 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.News.Category.Name)
         </dd>
-		<table>
+		<br /><br />
+		<table class="table">
 			<thead>
-				<a asp-page="/Comments/Create" asp-route-postId="@Model.News.Id">Add new comment</a>
+                
+            <tr>
+                <th>
+					List of comments
+                </th>
+                <th><a asp-page="/Comments/Create" asp-route-postId="@Model.News.Id">Add new comment</a></th>
+            </tr>
             </thead>
+			<tbody>
 		@foreach (var item in @Model.News.ListComments) {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Content)
                 </td>
@@ -63,12 +74,13 @@
                     @Html.DisplayFor(modelItem => item.CreatedAt)
                 </td>
                 <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-page="/Comments/Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="/Comments/Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="/Comments/Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
         }
+        </tbody>
         </table>
     </dl>
 </div>

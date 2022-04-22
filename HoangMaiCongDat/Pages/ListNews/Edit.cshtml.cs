@@ -38,7 +38,7 @@ namespace HoangMaiCongDat.Pages.ListNews
             {
                 return NotFound();
             }
-           ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Id");
+           ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name");
             return Page();
         }
 
@@ -69,7 +69,7 @@ namespace HoangMaiCongDat.Pages.ListNews
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Details", new { id = News.Id });
         }
 
         private bool NewsExists(int id)

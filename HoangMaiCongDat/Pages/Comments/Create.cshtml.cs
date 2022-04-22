@@ -29,12 +29,14 @@ namespace HoangMaiCongDat.Pages.Comments
         public Comment Comment { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int? postId)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
-            }
+            };
+
+            Comment.News = await _context.News.FindAsync(postId);
 
             _context.Comment.Add(Comment);
             await _context.SaveChangesAsync();
